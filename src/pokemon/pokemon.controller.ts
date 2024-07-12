@@ -41,7 +41,7 @@ export class PokemonController {
   ) {
     return this.pokemonService.update(term, updatePokemonDto);
   }
-
+// los Cusmton pie ParseMongoIdPipe nos obliga a que para poder hacer la eliminacion del pokemon, sea necesario enviar el Id de mongose
   @Delete(':id')
   remove(@Param('id', ParseMongoIdPipe) id: string) {
     return this.pokemonService.remove(id);

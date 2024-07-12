@@ -12,32 +12,29 @@ import { JoiValidationSchema } from './config/joi.validation';
 
 @Module({
   imports: [
-    
     ConfigModule.forRoot({
-      load: [ EnvConfiguration ],
+      load: [EnvConfiguration],
       validationSchema: JoiValidationSchema,
     }),
-    
+
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname,'..','public'), 
+      rootPath: join(__dirname, '..', 'public'),
+      // SERVIR CONTENIDO ESTATICO/
     }),
 
-// -- select url, 'http://localhost:3000/api/files/product/' || url from product_images;
+    // -- select url, 'http://localhost:3000/api/files/product/' || url from product_images;
 
-// -- update product_images set url = 'http://localhost:3000/api/files/product/' || url
+    // -- update product_images set url = 'http://localhost:3000/api/files/product/' || url
 
-
-    
-    MongooseModule.forRoot( process.env.MONGODB, {
-      dbName: 'pokemonsdb'
+    MongooseModule.forRoot('mongodb://localhost:27017/nest-pokemon', {
+      dbName: 'pokemonsdb',
     }),
-    
+
     PokemonModule,
 
     CommonModule,
 
     SeedModule,
-
   ],
 })
 export class AppModule {}

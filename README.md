@@ -39,7 +39,7 @@ yarn start:dev
 http://localhost:3000/api/v2/seed
 ```
 
-Stack usado
+## STACK USADO
 MongoDB
 Nest
 

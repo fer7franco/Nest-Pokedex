@@ -3,6 +3,9 @@
 /node_modules
 /build
 /mongo
+.env
+.env.prod
+
 
 # Logs
 logs
@@ -22,7 +25,7 @@ lerna-debug.log*
 
 # IDEs and editors
 /.idea
-.project
+.project 
 .classpath
 .c9/
 *.launch

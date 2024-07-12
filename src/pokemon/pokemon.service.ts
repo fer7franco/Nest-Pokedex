@@ -25,7 +25,7 @@ export class PokemonService {
     private readonly configService: ConfigService,
   ) {
     this.defaultLimit = configService.get<number>('defaultLimit');
-    // console.log({ defaultLimit: configService.get<number>('defaultLimit') })
+    //console.log({defaultLimit:configService.get<number>('defaultLimit') });
   }
 
   async create(createPokemonDto: CreatePokemonDto) {
@@ -38,7 +38,7 @@ export class PokemonService {
       this.handleExceptions(error);
     }
   }
-
+  //PAGINACION
   findAll(paginationDto: PaginationDto) {
     const { limit = this.defaultLimit, offset = 0 } = paginationDto;
 
@@ -60,6 +60,7 @@ export class PokemonService {
     }
 
     // MongoID
+    //el isvalidObjectId es de mongo para evaluar el ID(termino) si no es sigue con los otros metodos
     if (!pokemon && isValidObjectId(term)) {
       pokemon = await this.pokemonModel.findById(term);
     }
@@ -93,15 +94,17 @@ export class PokemonService {
   }
 
   async remove(id: string) {
-    // const pokemon = await this.findOne( id );
-    // await pokemon.deleteOne();
-    // return { id };
+    // 1ERA FORMA de hacerlo:
+    //const pokemon = await this.findOne(id);
     // const result = await this.pokemonModel.findByIdAndDelete( id );
+    // return result,
+    // pero se estaria haciendo una doble consulta
+
+    // 2DA FORMA DE HACERLO
+    // El deletedCouny es el resultado que me salta en posman al mandar la solicitud entonces teniendo encuenta ese valor hace la evaluacion asi:
     const { deletedCount } = await this.pokemonModel.deleteOne({ _id: id });
     if (deletedCount === 0)
       throw new BadRequestException(`Pokemon with id "${id}" not found`);
-
-    return;
   }
 
   private handleExceptions(error: any) {

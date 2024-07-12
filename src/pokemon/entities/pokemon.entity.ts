@@ -10,7 +10,7 @@ export class Pokemon extends Document {
   })
   name: string;
 
-  
+
   @Prop({
     unique: true,
     index: true,
